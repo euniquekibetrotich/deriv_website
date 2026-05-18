@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="en" dir="auto">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/deriv-logo.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="title" content="Premium Deriv powered by deriv." />
+        <meta name="description" content="Premium Deriv powered by deriv!" />
+        <meta property="og:title" content="Premium Deriv powered by deriv" />
+        <meta property="og:description" content="Premium Deriv powered by deriv" />
+        <title>Premium Deriv powered by deriv</title>
+        <style>
+            :root {
+                font-size: 62.5%;
+            }
+        </style>
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#1a2a6c" />
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('/service-worker.js').catch(function (err) {
+                        console.warn('SW registration failed', err);
+                    });
+                });
+            }
+        </script>
+    <script defer src="/static/js/lib-react.js"></script><script defer src="/static/js/lib-router.js"></script><script defer src="/static/js/vendors-node_modules_deriv-com_analytics_lib_index_js-node_modules_deriv_deriv-api_dist_Deriv-7ab70a.js"></script><script defer src="/static/js/index.js"></script><link href="/static/css/vendors-node_modules_deriv-com_analytics_lib_index_js-node_modules_deriv_deriv-api_dist_Deriv-7ab70a.css" rel="stylesheet"><link href="/static/css/index.css" rel="stylesheet"></head>
+
+    <body class="body theme theme--light">
+        <div id="modal_root" class="modal-root"></div>
+        <div id="popup_root" class="popup-root"></div>
+        <div id="root"></div>
+    </body>
+</html>
+
