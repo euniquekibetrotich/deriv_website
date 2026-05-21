@@ -13,3 +13,4 @@ Referral.hasMany(Commission, { foreignKey: 'referralId', as: 'commissions' });
 Commission.belongsTo(Referral, { foreignKey: 'referralId', as: 'referral' });
 
 export { sequelize, User, Referral, Commission };
+export { Bot } from './bot.model.js';

@@ -14,6 +14,7 @@ export class User extends Model {
       email: this.email,
       referralCode: this.referralCode,
       role: this.role,
+      derivReferralLink: this.derivReferralLink,
       createdAt: this.createdAt
     };
   }
@@ -48,6 +49,16 @@ User.init(
     role: {
       type: DataTypes.ENUM('affiliate', 'admin'),
       defaultValue: 'affiliate'
+    },
+    derivReferralLink: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Deriv signup referral link for this user'
+    },
+    derivPartnerId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Partner ID from Deriv tracking'
     }
   },
   {

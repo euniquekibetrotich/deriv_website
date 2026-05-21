@@ -1,36 +1,22 @@
-const BINANCE_BASE_URL = 'https://api.binance.com/api/v3';
+import { api } from './client';
 
-export const marketSymbols = [
-  { symbol: 'BTCUSDT', label: 'BTC/USD', name: 'Bitcoin' },
-  { symbol: 'ETHUSDT', label: 'ETH/USD', name: 'Ethereum' },
-  { symbol: 'BNBUSDT', label: 'BNB/USD', name: 'BNB' },
-  { symbol: 'SOLUSDT', label: 'SOL/USD', name: 'Solana' },
-  { symbol: 'XRPUSDT', label: 'XRP/USD', name: 'XRP' },
-  { symbol: 'ADAUSDT', label: 'ADA/USD', name: 'Cardano' }
-];
+// GET TICKERS (backend proxy)
+export async function fetchTicker24h() {
+  const res = await api.get('/market/tickers');
+  return res.data;
+}
 
-export async function fetchTicker24h(symbols = marketSymbols.map((item) => item.symbol)) {
-  const requests = symbols.map((symbol) =>
-    fetch(`${BINANCE_BASE_URL}/ticker/24hr?symbol=${symbol}`).then((response) => {
-      if (!response.ok) throw new Error(`Could not load ticker for ${symbol}`);
-      return response.json();
-    })
+// GET CANDLES (backend proxy)
+export async function fetchCandles(symbol, interval) {
+  const res = await api.get(
+    `/market/candles?symbol=${symbol}&interval=${interval}`
   );
-
-  return Promise.all(requests);
+  return res.data;
 }
 
-export async function fetchCandles(symbol, interval = '1h', limit = 120) {
-  const response = await fetch(`${BINANCE_BASE_URL}/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`);
-  if (!response.ok) throw new Error(`Could not load candles for ${symbol}`);
-  const data = await response.json();
-
-  return data.map((item) => ({
-    time: Math.floor(item[0] / 1000),
-    open: Number(item[1]),
-    high: Number(item[2]),
-    low: Number(item[3]),
-    close: Number(item[4])
-  }));
-}
-
+// symbols list (you can expand later)
+export const marketSymbols = [
+  { symbol: 'R_75', label: 'Volatility 75', name: 'Synthetic Index' },
+  { symbol: 'R_100', label: 'Volatility 100', name: 'Synthetic Index' },
+  { symbol: 'BTCUSD', label: 'Bitcoin', name: 'Crypto' }
+];
